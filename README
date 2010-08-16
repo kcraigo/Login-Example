@@ -1,0 +1,25 @@
+Use the following SQL to create the demo database tables
+
+CREATE DATABASE accesscontrol;
+
+CREATE TABLE IF NOT EXISTS admin (
+
+username varchar(20) NOT NULL,
+
+password varchar(20) NOT NULL,
+
+realfirstName varchar(20) NOT NULL,
+
+reallastName varchar(20) NOT NULL,
+
+role varchar(20) NOT NULL,
+
+>PRIMARY KEY  (username)
+
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘admin’, ‘password’, ‘admin’, ‘admin’, ‘admin’);
+
+INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘manager’, ‘password’, ‘manager’, ‘manager’, ‘manager’);
+
+INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘Super’, ‘password’, ‘Super’, ‘Super’, ‘Super’);
