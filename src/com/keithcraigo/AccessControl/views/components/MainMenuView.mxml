@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+		  xmlns:s="library://ns.adobe.com/flex/spark"
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  xmlns:signals="org.osflash.signals.*">
+
+	<fx:Declarations>
+		<signals:Signal id="logoutClicked"/>
+		<signals:Signal id="handleAppStateChange"/>
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import spark.events.IndexChangeEvent; 
+			import mx.controls.Alert;
+
+			/**
+			 * Dispatches the appropriate signal determined by the users menu choice
+			 *
+			 * @param event - Index of the button clicked
+			 *
+			 * @return none
+			 *
+			 */
+			public function changeSelection(event:IndexChangeEvent):void
+			{
+				//Alert.show("Selected Item: " + ButtonBar(event.target).selectedItem);
+				var btn:String = ButtonBar(event.target).selectedItem;
+				handleAppStateChange.dispatch(btn);
+			}
+		]]>
+	</fx:Script>
+
+	<s:ButtonBar id="mainNav" requireSelection="true" change="changeSelection(event)">
+		<s:dataProvider>
+			<s:ArrayCollection source="['Home', 'Help','About']"/>
+		</s:dataProvider>
+	</s:ButtonBar>
+	<mx:Spacer width="100"/>
+	<s:Button label="Logout"
+			  right="10"
+			  top="5"
+			  click="logoutClicked.dispatch()"/>
+</s:HGroup>

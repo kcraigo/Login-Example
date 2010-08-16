@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel 
+		 implements="com.keithcraigo.AccessControl.views.components.interfaces.IAdmin"
+		 xmlns:fx="http://ns.adobe.com/mxml/2009"  
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 xmlns:local="com.keithcraigo.AccessControl.*"
+		 xmlns:views="com.keithcraigo.AccessControl.views.components.*"
+		 title="Admin Control Panel"  
+		 top="100" 
+		 left="10" 
+		 right="10" 
+		 bottom="30">
+	<fx:Metadata>
+
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+
+			[Bindable] public var _sessionID:String;
+
+			/**
+			 * Set the views view state according to the logged in users accesslevel
+			 *
+			 * @param value
+			 *
+			 * @return none
+			 *
+			 * @see AdminViewMediator
+			 *
+			 */
+			public function set activeViewState( value : String ) : void
+			{
+				currentState = value;
+			}
+
+
+
+
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="adminState"/>
+		<s:State name="superAdminState"/>
+	</s:states>
+
+	<views:AdminNormalView id="adminNormal" excludeFrom="superAdminState"/>
+
+	<views:SuperAdminView id="superAdmin" excludeFrom="adminState"/>
+
+</s:Panel>

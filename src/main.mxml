@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application 
+			   implements="com.keithcraigo.AccessControl.views.components.interfaces.IMain"
+			   xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:local="com.keithcraigo.AccessControl.*"
+			   xmlns:views="com.keithcraigo.AccessControl.views.components.*"
+			   xmlns:signals="org.osflash.signals.*"
+			   creationComplete="init()">
+
+	<fx:Declarations>
+		<local:AccessControl_context contextView="{this}"/>
+
+	</fx:Declarations>
+
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import mx.controls.Alert;
+			import com.keithcraigo.AccessControl.signals.LogOutSignal;
+
+
+			/**
+			 * Setup the inactivity timer
+			 *
+			 * @param none
+			 *
+			 * @return void
+			 *
+			 */
+			public function init():void {
+				this.systemManager.addEventListener(FlexEvent.IDLE, checkInactivity);
+			}
+
+			/**
+			 * If no activity is detected for 10 seconds reset the
+			 * user sessionId in the model.
+			 * Force the user to login in again which will generate a new sessionid.
+			 *
+			 * @param Flexevent
+			 *
+			 * @return none
+			 *
+			 */
+			public function checkInactivity(e:FlexEvent):void {
+				if(e.currentTarget.mx_internal :: idleCounter == 100){    
+					navigateToURL(new URLRequest("main.html"),'_self');
+				}
+			} 
+
+			/**
+			 * Set the main view state
+			 *
+			 * @param value - state of the current view
+			 *
+			 * @return none
+			 *
+			 * @see loginViewMediator
+			 *
+			 */
+			public function set activeViewState( value : String ) : void
+			{
+				currentState = value;
+			}
+
+			/**
+			 * DEMO Only don't do this in production - Set the user sessionID
+			 *
+			 * @param value - current session ID
+			 *
+			 * @return none
+			 *
+			 * @see loginViewMediator
+			 *
+			 */
+			public function set currentUserSessionID ( value : String ) : void
+			{
+				userSessionID.text = value;
+			}
+
+
+
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="loginState"/>
+		<s:State name="userState"/>
+		<s:State name="adminState"/>
+		<s:State name="superState"/>
+		<s:State name="HelpState"/>
+		<s:State name="AboutState"/>
+	</s:states>
+
+	<s:Group right="0"
+			 left="0"
+			 top="0"
+			 bottom="0">
+		<s:HGroup left="10"
+				  top="10">
+			<mx:Image autoLoad="true"
+					  scaleContent="true"
+					  id="logo"
+					  source="@Embed('assets/logo.png')"/>
+
+		</s:HGroup>
+		<mx:Spacer width="100"/>
+		<s:Label left="150" top="30" text="Current SessionID: "/>
+		<s:Label id="userSessionID" left="270" top="30"/>
+		<views:MainMenuView id="mainMenu"
+							excludeFrom="loginState"
+							top="10"
+							horizontalCenter="0"/>
+
+		<views:LoginView id="LoginView"
+						 includeIn="loginState"
+						 verticalCenter="0"
+						 horizontalCenter="0"/>
+
+		<views:AdminView id="AdminView"
+						 includeIn="adminState"
+						 verticalCenter="0"
+						 horizontalCenter="0"/>
+
+		<views:SuperAdminView id="SuperAdminView"
+							  includeIn="superState"
+							  verticalCenter="0"
+							  horizontalCenter="0"/>
+
+		<views:UserControlPanel id="UsersControlPanel"
+								includeIn="userState"
+								verticalCenter="0"
+								horizontalCenter="0"/>
+
+		<views:Help id="help"
+					includeIn="HelpState"
+					verticalCenter="0"
+					horizontalCenter="0"/>
+
+		<views:About id="about"
+					 includeIn="AboutState"
+					 verticalCenter="0"
+					 horizontalCenter="0"/>
+
+		<s:Label id="footer"
+				 color="#333333"
+				 text="©2010 KeithCraigo.com, All Rights Reserved"
+				 horizontalCenter="0"
+				 bottom="10"/>
+
+	</s:Group>
+</s:Application>

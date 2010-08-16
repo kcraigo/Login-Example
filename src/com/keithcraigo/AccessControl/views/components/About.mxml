@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group 
+		 xmlns:fx="http://ns.adobe.com/mxml/2009"  
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 xmlns:signals="org.osflash.signals.*"
+		 top="100" left="10" right="10" bottom="30">
+	<fx:Declarations>
+
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			
+		]]>
+	</fx:Script>
+	<s:RichText width="540" height="120">
+		<s:content>
+			<s:span fontWeight="bold">LOGIN Demo using Flex 4 SDK, RobotLegs, AS3 Signals, PHP 5.3, Zend_Auth and Zend_Amf with Session support.</s:span> 
+			<s:p>
+                    	There are 3 possible login accounts you can test with.
+                    </s:p>
+			<s:p>
+                    	1. User Name: Super, Password: password
+                    </s:p>
+			<s:p>
+                    	2. User Name: admin, password: password
+                    </s:p>
+			<s:p>
+                    	3. User Name: manager, password: password
+                    </s:p>
+		</s:content>
+	</s:RichText>
+</s:Group>

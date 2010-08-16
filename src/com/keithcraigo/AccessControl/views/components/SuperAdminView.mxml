@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas 
+		   xmlns:s="library://ns.adobe.com/flex/spark"
+		   xmlns:mx="library://ns.adobe.com/flex/mx" 
+		   xmlns:fx="http://ns.adobe.com/mxml/2009"  
+		   width="100%" height="100%">
+
+	<fx:Script>
+		<![CDATA[
+
+
+			
+
+
+		]]>
+	</fx:Script>
+
+	<s:TabBar id="admin_sections" dataProvider="{myViewStack}" />
+
+	<mx:ViewStack id="myViewStack"
+				  borderStyle="solid" top="0" left="0" right="0" bottom="0"> 
+
+		<s:NavigatorContent label="Admin Panel" width="100%" height="100%"> 
+			<s:Label text="User Accounts" top="40" left="10"/> 
+			<s:Button label="Add" id="addAccount" top="70" left="20" />
+		</s:NavigatorContent> 
+
+		<s:NavigatorContent label="My Reports" width="100%" height="100%"> 
+			<mx:AdvancedDataGrid top="40" left="10" right="10" bottom="10">
+				<mx:columns>
+					<mx:AdvancedDataGridColumn headerText="Report ID" dataField="incident_id" />
+					<mx:AdvancedDataGridColumn headerText="Status" dataField="status" />
+				</mx:columns>
+			</mx:AdvancedDataGrid>
+		</s:NavigatorContent> 
+
+		<s:NavigatorContent label="Super Admin Panel" width="100%" height="100%"> 
+			<s:Label text="System Logs" top="40" left="10"/> 
+			<s:Button label="Top 10" id="getTop10" top="70" left="20" />
+			<s:Button label="Memory Usage" id="showMemoryUsage" top="70" right="20" />
+			<s:List id="top10" top="100" left="10" width="45%" bottom="20" />
+			<mx:BarChart id="memUsage" top="100" right="10" width="45%" bottom="20" />
+		</s:NavigatorContent> 
+
+
+	</mx:ViewStack> 
+</mx:Canvas>
