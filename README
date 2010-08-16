@@ -18,8 +18,17 @@ role varchar(20) NOT NULL,
 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘admin’, ‘password’, ‘admin’, ‘admin’, ‘admin’);
+INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘admin’, ‘ a72d11da902a6a63c9702109c9dd3f96’, ‘admin’, ‘admin’, ‘admin’);
 
-INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘manager’, ‘password’, ‘manager’, ‘manager’, ‘manager’);
+INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘manager’, ‘ a72d11da902a6a63c9702109c9dd3f96’, ‘manager’, ‘manager’, ‘manager’);
 
-INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘Super’, ‘password’, ‘Super’, ‘Super’, ‘Super’);
+INSERT INTO admin (username, password, realfirstName, reallastName, role) VALUES (‘Super’, ‘ a72d11da902a6a63c9702109c9dd3f96’, ‘Super’, ‘Super’, ‘Super’);
+
+
+Please NOTE:
+
+$password = ‘password’
+
+$salt = “qZPJeZbQv])7fnKxS’U0\2V^Eg.|})+obZ:H6|y.[#EBqo;Evp”
+
+a72d11da902a6a63c9702109c9dd3f96 is the result of MD5($password.$salt)
